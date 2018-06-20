@@ -88,8 +88,9 @@ ChatBot.sendMessage = function () {
                 if (typeof result != "undefined" && "msg" in result) {
                     ChatBot.setAnimation(result.animation);
                     ChatBot.write(result.msg, "boto");
-                } else {
-                    //The server did not erred but we got an empty result (handling as error)
+                } else if (typeof result != "undefined" && "msg" in result && "status" in result)  {
+                    window.location.replace(ChatBot.SERVER_PATH+"/mainpage"); 
+                }else{
                     ChatBot.handleServerError("No result");
                 }
                 sendBtn.removeClass("loading");

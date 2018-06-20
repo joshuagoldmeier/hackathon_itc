@@ -3,6 +3,10 @@ from bottle import route,static_file, run, template, get,request
 import json
 import bottle as b
 
+info_list=[]
+question_list=["Which sport would you like to take a wack at?","what is your level in this sport",
+               "What is your height?(cm please)","what is your weight(kg please)?",
+               "last question,what is your budget(only numbers in dollars)"]
 
 @get("/")
 def index():
@@ -21,15 +25,49 @@ def index():
 
 @route("/chat", method='POST')
 def chat():
-    user_message = request.POST.get('msg')
+    if len(info_list)==0:
+        name = request.POST.get('msg')
+        info_list.append(name)
 
-    return json.dumps({"animation": "speaking", "msg": user_message})
+        return json.dumps({"animation": "speaking", "msg": question_list[0],"status":False})
+
+    if len(info_list)== 1:
+        sport = request.POST.get('msg')
+        info_list.append(sport)
+
+        return json.dumps({"animation": "speaking", "msg": question_list[1],"status":False})
+
+    if len(info_list) == 2:
+        level = request.POST.get('msg')
+        info_list.append(level)
+
+        return json.dumps({"animation": "speaking", "msg": question_list[2],"status":False})
+
+    if len(info_list) == 3:
+        height = request.POST.get('msg')
+        info_list.append(height)
+
+        return json.dumps({"animation": "speaking", "msg": question_list[3],"status":False})
+
+    if len(info_list) == 4:
+        weight = request.POST.get('msg')
+        info_list.append(weight)
+
+        return json.dumps({"animation": "speaking", "msg": question_list[4],"status":False})
+
+    if len(info_list) == 5:
+        budget = request.POST.get('msg')
+        info_list.append(budget)
+        print (info_list)
+
+        return json.dumps({"animation": "speaking",
+                           "msg": "ok thank you we will find all the products you need !!","status":True})
+
 
 
 @get("/sports/ski")
 def sports():
-    my_list = ["gloves","hellmet","glasses","boots"]
-    return json.dumps(my_list)
+    return json.dumps(info_list)
 
 
 keyWord = ""
