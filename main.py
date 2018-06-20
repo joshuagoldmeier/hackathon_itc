@@ -5,6 +5,10 @@ import bottle as b
 def index():
     return template("index.html")
 
+@get("/mainpage")
+def index():
+    return template("mainpage.html")
+
 
 @get('/js/<filename:re:.*\.js>')
 def javascripts(filename):
