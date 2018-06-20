@@ -1,6 +1,11 @@
-from bottle import route, run, template
 from Sports_Equipment import ski
+from bottle import route, run, template, get
+import bottle as b
 
+
+@get("/")
+def index():
+    return template("index.html")
 
 # @route('/hello/<name>')
 # def index(name):
@@ -10,3 +15,15 @@ from Sports_Equipment import ski
 
 for item in ski["Beginner"]:
     print("ski ", item)
+
+
+@get('/js/<filename:re:.*\.js>')
+def javascripts(filename):
+    return b.static_file(filename, root='js')
+
+
+def main():
+    run(host='localhost', port=7000)
+
+if __name__ == '__main__':
+    main()
