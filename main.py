@@ -5,12 +5,16 @@ import bottle as b
 
 @get("/")
 def index():
-    return template("index.html")
+    return template("landing.html")
 
 @get("/mainpage")
 def index():
     return template("mainpage.html")
 
+@get("/sports/ski")
+def sports():
+    my_list = ["ski"]
+    return json.dumps(my_list)
 
 keyWord = ""
 walmart_api = 'http://api.walmartlabs.com/v1/search?apiKey=utuc2y44uxauxzqk985vft4z&query="' + keyWord + '"'
