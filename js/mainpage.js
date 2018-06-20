@@ -1,11 +1,18 @@
+// import axios from 'axios';
+
 class MainPage extends React.Component{
     constructor(props){
-        super(props);  
-    }
+        super(props); 
+        this.getTheItem = this.getTheItem.bind(this)    }
 
+    // componentDidMount() {
+    //     axios.get(`http://exmaple.com/blog/${this.props.id}`)
+    //       .then(response => this.setState(response.data))
+    //   }
+    
     render(){
         return(
-            <div> MainPage works!</div>
+            <div class="item" > </div>
         )
     }
 }

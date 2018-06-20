@@ -8,7 +8,7 @@ class App extends React.Component{
     render(){
             return(
                 <div>Lets start the app
-                    <button><a href="mainpage.html">button</a></button>
+                    <button><a href="mainpage">button</a></button>
                 </div>
             
             );
