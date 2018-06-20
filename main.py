@@ -8,14 +8,17 @@ import bottle as b
 def index():
     return template("landing.html")
 
+
 @get("/mainpage")
 def index():
     return template("mainpage.html")
 
+
 @get("/sports/ski")
 def sports():
-    my_list = ["ski"]
+    my_list = ["gloves","hellmet","glasses","boots"]
     return json.dumps(my_list)
+
 
 keyWord = ""
 walmart_api = 'http://api.walmartlabs.com/v1/search?apiKey=utuc2y44uxauxzqk985vft4z&query="' + keyWord + '"'
@@ -36,8 +39,19 @@ def javascripts(filename):
     return b.static_file(filename, root='js')
 
 
+@get('/css/<filename:re:.*\.css>')
+def css(filename):
+    return b.static_file(filename, root='css')
+
+
+@route('/images/<filename:re:.*\.(jpg|png|gif|ico)>', method='GET')
+def images(filename):
+    return static_file(filename, root='images')
+
+
 def main():
     run(host='localhost', port=7000)
+
 
 if __name__ == '__main__':
     main()

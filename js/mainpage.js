@@ -4,6 +4,11 @@ class MainPage extends React.Component{
         super(props); 
         this.getItem =this.getItem.bind(this)
     }
+
+    componentDidMount() {
+        window.addEventListener('load', this.getItem);
+     }
+
     getItem(){
         $.ajax({
             type:"GET",
@@ -11,7 +16,32 @@ class MainPage extends React.Component{
             
             dataType:"json",
             success: function (response){
-               console.log(response)
+                var counter = 0
+                var row = $("<div>")
+                row.addClass("row")
+               for (var i = 0 ; i<response.length ; i++){
+                   if (counter<2){
+                        counter++;
+                        var product =$("<div>")
+                        product.addClass("col-6 product")
+                        product.append(response[i])
+                        product.appendTo(row);   
+                   }
+                   else{
+                        row.appendTo($(".container"));
+                       counter = 0;
+                       var row = $("<div>")
+                       row.addClass("row")
+                       var product =$("<div>")
+                       product.addClass("col-6 product")
+                       product.append(response[i])
+                       product.appendTo(row);
+                       
+                       counter++;
+                       
+                   }
+               }
+               row.appendTo($(".items")); 
             },
             
             error: function(msg){
@@ -22,7 +52,17 @@ class MainPage extends React.Component{
     }
     render(){
         return(
-            <div class="item" onLoad={this.getItem}>bb</div>
+            <div>
+                <div className="displayBy">
+                    <div className="container">
+                        <div className="row">
+                            <button className="col-6">Display By Rates</button>
+                            <button className="col-6">Display By Prices</button>
+                        </div>
+                    </div>
+                </div>
+                <div className="items container"></div>
+            </div>
         )
     }
 }
