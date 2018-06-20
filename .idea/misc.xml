@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 (hackathon_itc)" project-jdk-type="Python SDK" />
+=======
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 (python3)" project-jdk-type="Python SDK" />
+=======
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 (day1)" project-jdk-type="Python SDK" />
+>>>>>>> 6eef4ff34b0bd25595f67b08228746df47be5252
+>>>>>>> effbeea445c50b19a5bcae43afa434bcc2be0012
 </project>

@@ -3,18 +3,18 @@ class App extends React.Component{
     constructor(props){
         super(props);
     }
-
+    
 
     render(){
             return(
                 <div>Lets start the app
-                    <button><a href="mainpage">button</a></button>
+                    <button><a href="mainpage.html">button</a></button>
                 </div>
-
+            
             );
     }
 
-
+    
 }
 
 
