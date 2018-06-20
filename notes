@@ -1,0 +1,6 @@
+http://api.walmartlabs.com/v1/items/12417832?apiKey={apiKey}&lsPublisherId={Your LinkShare Publisher Id}&format=json
+
+Application Jonah Taurog Key: utuc2y44uxauxzqk985vft4z Status: active Created: 6 minutes ago
+Key Rate Limits
+5	Calls per second
+5,000	Calls per day
