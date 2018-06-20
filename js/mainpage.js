@@ -28,7 +28,7 @@ class MainPage extends React.Component{
                         product.appendTo(row);   
                    }
                    else{
-                        row.appendTo($(".container"));
+                        row.appendTo($(".items"));
                        counter = 0;
                        var row = $("<div>")
                        row.addClass("row")

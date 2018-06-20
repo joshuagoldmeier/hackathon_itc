@@ -1,12 +1,14 @@
-from Sports_Equipment import ski
-from bottle import route,static_file, run, template, get
+from bottle import route,static_file, run, template, get,request
 import json
 import bottle as b
+from pymongo import MongoClient
+
 
 
 @get("/")
 def index():
     return template("landing.html")
+
 
 @get("/boto")
 def index():
@@ -18,10 +20,11 @@ def index():
     return template("mainpage.html")
 
 
-@route("/test", method='POST')
+@route("/chat", method='POST')
 def chat():
     user_message = request.POST.get('msg')
     return json.dumps({"animation": "speaking", "msg": user_message})
+
 
 @get("/sports/ski")
 def sports():
@@ -29,19 +32,26 @@ def sports():
     return json.dumps(my_list)
 
 
-keyWord = ""
-walmart_api = 'http://api.walmartlabs.com/v1/search?apiKey=utuc2y44uxauxzqk985vft4z&query="' + keyWord + '"'
+@route('/hello/<name>')
+def index(name):
+    return template('<b>Hello {{name}}</b>!', name=name)
 
 
-# @route('/hello/<name>')
-# def index(name):
-#     return template('<b>Hello {{name}}</b>!', name=name)
-#
-# run(host='localhost', port=8080)
 
-for item in ski["Beginner"]:
-    print("ski ", item)
+@get("/")
+def index():
+    return template("index.html")
 
+@get("/sport/<sport_name>")
+def index(sport_name):
+    client = MongoClient('localhost', 27017)
+    db = client.hackathon
+    items = db.items.find()
+    print(items)
+    for item in items:
+        if item["_id"] == sport_name:
+            return item
+    return "can't find sport!"
 
 @get('/js/<filename:re:.*\.js>')
 def javascripts(filename):
