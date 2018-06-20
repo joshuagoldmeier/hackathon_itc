@@ -1,5 +1,5 @@
 from Sports_Equipment import ski
-from bottle import route,static_file, run, template, get
+from bottle import route,static_file, run, template, get,request
 import json
 import bottle as b
 
@@ -7,6 +7,7 @@ import bottle as b
 @get("/")
 def index():
     return template("landing.html")
+
 
 @get("/boto")
 def index():
@@ -18,11 +19,12 @@ def index():
     return template("mainpage.html")
 
 
-@route("/test", method='POST')
+@route("/chat", method='POST')
 def chat():
     user_message = request.POST.get('msg')
 
     return json.dumps({"animation": "speaking", "msg": user_message})
+
 
 @get("/sports/ski")
 def sports():
