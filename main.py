@@ -21,12 +21,11 @@ def index():
 @route("/test", method='POST')
 def chat():
     user_message = request.POST.get('msg')
-
     return json.dumps({"animation": "speaking", "msg": user_message})
 
 @get("/sports/ski")
 def sports():
-    my_list = ["gloves","hellmet","glasses","boots"]
+    my_list = ["gloves","helmet","glasses","boots"]
     return json.dumps(my_list)
 
 
