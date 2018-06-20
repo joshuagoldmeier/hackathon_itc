@@ -1,0 +1,24 @@
+body {
+    background-color: rgb(205, 231, 205);
+}
+
+.navbar {
+    background-color: lightblue;
+}
+
+#btn-menu{
+    background-color: black;
+}
+
+.container{
+    height: 100px;
+    position: absolute;
+    bottom: 0px;
+}
+
+.fa.fa {
+    width: 20px;
+    height: 20px;
+    font-size: 50px;
+    margin-right: 40px;
+}
