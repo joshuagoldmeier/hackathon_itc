@@ -9,7 +9,8 @@ class MainPage extends React.Component{
     }
 
     componentDidMount() {
-        window.addEventListener('load', this.getItem);
+        // window.addEventListener('load', this.getItem);
+        this.getItem()
      }
 
     getItem(){
@@ -20,10 +21,12 @@ class MainPage extends React.Component{
             
             dataType:"json",
             success: function (response){
+                console.log(response)
                 var counter = 0
                 var row = $("<div>")
                 row.addClass("row")
                for (var i = 0 ; i<response.length ; i++){
+
                    if (counter<2){
                         counter++;
                         var product =$("<div>")
@@ -57,7 +60,7 @@ class MainPage extends React.Component{
     render(){
         return(
             <div>
-                <h1>Hi <span>{this.state.name}</span> We found the best deals for you</h1>
+                <h1>Hi <span>{this.state.name}</span> we found the best deals for you</h1>
                 <div className="displayBy">
                     <div className="container">
                         <div className="row">

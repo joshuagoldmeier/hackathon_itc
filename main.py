@@ -173,28 +173,35 @@ def get_user_gender(user_message):
 
 @get("/sports/ski")
 def sports():
-
+    print("In the route")
     items_to_return = {}
-    age = info_list[5]
+    age = int(info_list[5])
     height = info_list[3]
     weight = info_list[4]
-    gender = info_list[6]
-    keywords = ['boy', 'girl', 'kid', 'youth'] if age < 18 else ['men', 'women', 'adult']
+    gender = "male" if info_list[6] == "man" else "female"
+    male_keywords = ['boy', 'kid', 'youth'] if age < 18 else ['men', 'adult']
+    female_keywords = ['girl', 'kid', 'youth'] if age < 18 else ['women', 'adult']
     client = MongoClient('localhost', 27017)
     db = client.hackathon
-    items = db.items.find()
-    print(items)
-    for item in items:
-        if item["_id"].lower() == info_list[1].lower():
-            for equipment_name, equipment_list in item.items():
+    all_sports = db.items.find()
+    for sport in all_sports:
+        if sport["_id"].lower() == info_list[1].lower():
+            for equipment_name, equipment_list in sport["items"].items():
+                print(equipment_name)
                 for one_equip in equipment_list:
                     if "Gender" in one_equip:
-                        if one_equip["Gender"] == "Unisex" or one_equip["Gender"] == gender:
-                            for kw in keywords:
-                                if kw in one_equip['Name'].lower():
-                                    items_to_return[equipment_name] = one_equip
-
-
+                        if one_equip["Gender"].lower() == gender:
+                            if 'male' in gender:
+                                for kw in male_keywords:
+                                    if kw.lower() in one_equip['Name'].lower():
+                                        items_to_return[equipment_name] = one_equip
+                            else:
+                                for kw in female_keywords:
+                                    if kw.lower() in one_equip['Name'].lower():
+                                        items_to_return[equipment_name] = one_equip
+                        elif one_equip["Gender"] == "Unisex":
+                            print(8)
+    print (items_to_return)
     return json.dumps(items_to_return) if len(items_to_return) > 0 else "Sorry, we cannot find you a match :("
 
 

@@ -32,10 +32,12 @@ def processItem(item, answers):
 try:
     sports_dict = {}
     for sport_name, equipment in sports.items():
+
         cheapest_items = {}
         cheapest_item = {}
         main_dict = {}
         for item in equipment["Beginner"]:
+
             main_list = []
             final_json = {}
             x = 1

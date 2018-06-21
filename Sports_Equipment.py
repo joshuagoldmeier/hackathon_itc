@@ -20,7 +20,7 @@ sports = {
     },
 
     'soccer' : {
-        "Beginner": ["Soccer_ball", "Soccer_cleats", "Adult_shin_guards"]
+        "Beginner": ["Soccer_ball", "Soccer_cleats", "Soccer_shin_guards"]
     },
 
     'fencing' : {
