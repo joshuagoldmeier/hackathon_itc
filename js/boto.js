@@ -89,6 +89,7 @@ ChatBot.sendMessage = function () {
                     ChatBot.setAnimation(result.animation);
                     ChatBot.write(result.msg, "boto");
                 } else if (typeof result != "undefined" && "msg" in result && result["status"]==1)  {
+                    $(".chat-send").css("display","none");
                     ChatBot.setAnimation(result.animation);
                     ChatBot.write(result.msg, "boto");
                     setTimeout(function(){
