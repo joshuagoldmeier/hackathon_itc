@@ -3,18 +3,20 @@ class MainPage extends React.Component{
     constructor(props){
         super(props); 
         this.getItem =this.getItem.bind(this)
+        var cookieSplitted = document.cookie.split(";");
         this.state={
-            name: document.cookie.substring(5)
+            name: cookieSplitted[1].substring(6),
+            sport : cookieSplitted[0].substring(7)
         }
     }
 
     componentDidMount() {
         // window.addEventListener('load', this.getItem);
-        this.getItem()
+        this.getItem();
      }
 
     getItem(){
-        console.log(document.cookie.substring(5))
+       
         $.ajax({
             type:"GET",
             url:"/sports/ski",

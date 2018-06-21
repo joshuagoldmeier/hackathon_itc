@@ -51,6 +51,7 @@ def chat():
                 {"animation]": "speaking", "msg":error_answer,"status" : 0})
 
         sport = get_user_sport(user_message)
+        response.set_cookie('sport', sport)
         info_list.append(sport)
         return json.dumps({"animation": "speaking", "msg": question_list[1],"status":0})
 
@@ -205,16 +206,16 @@ def sports():
     return json.dumps(items_to_return) if len(items_to_return) > 0 else "Sorry, we cannot find you a match :("
 
 
-@get("/sport/<sport_name>")
-def index(sport_name):
-    client = MongoClient('localhost', 27017)
-    db = client.hackathon
-    items = db.items.find()
-    print(items)
-    for item in items:
-        if item["_id"] == sport_name:
-            return item
-    return "can't find sport!"
+# @get("/sport/<sport_name>")
+# def index(sport_name):
+#     client = MongoClient('localhost', 27017)
+#     db = client.hackathon
+#     items = db.items.find()
+#     print(items)
+#     for item in items:
+#         if item["_id"] == sport_name:
+#             return item
+#     return "can't find sport!"
 
 @get('/js/<filename:re:.*\.js>')
 def javascripts(filename):
