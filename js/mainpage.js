@@ -35,7 +35,7 @@ class MainPage extends React.Component{
                         product.addClass("col-6 product")
                         product.append("name: "+Object.values(response)[i].Name+"</br>")
 
-                        product.append("price: "+Object.values(response)[i].Price+"</br>")
+                        product.append("price: "+Object.values(response)[i].Price+"$"+"</br>")
 
                         var link=$("<a>")
                         link.attr("target","_new")
@@ -68,7 +68,7 @@ class MainPage extends React.Component{
                        product.addClass("col-6 product")
                        product.append("name: "+Object.values(response)[i].Name+"</br>")
 
-                       product.append("price: "+Object.values(response)[i].Price+"</br>")
+                       product.append("price: "+Object.values(response)[i].Price+"$"+"</br>")
 
                        var link=$("<a>")
                        link.attr("target","_new")
