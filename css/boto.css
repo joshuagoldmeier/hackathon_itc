@@ -26,21 +26,21 @@ body{
     left: 50%;
     position: absolute;
     background-color:rgba(255,255,255,0);
-    height: 86%;
 }
 
 .chat-window-header{
-    font-size: 20px;
+    font-size: 27px;
     line-height: 1.6em;
+    background-color: rgba(255,255,255,0.7);
+}
 
-   background: rgb(0, 0, 0); /* The Fallback */
-   background: rgba(0, 0, 0, 0.8);
-
+.chat-window-header img {
+    width: 160px;
 }
 
 .chat-screen{
 	width:530px;
-	height:65%;
+	height:300px;
     background-image: url('https://i.pinimg.com/736x/83/9b/95/839b958e458bf7c8623356d6d953fd08--football-cakes-football-field.jpg');
     background-size: 96%;
 	border: 1px solid rgba(56, 42, 42, 0.8);
@@ -70,7 +70,7 @@ body{
 .chat-send{
 	padding:5px 30px;
 	display:inline-block;
-	background-color:#00FF7F;
+	background-color:#63d259;
 	vertical-align: bottom;
 }
 
@@ -80,19 +80,19 @@ body{
 
 .orb-holder{
 	text-align: center;
-	 height: 200px;
+	 height: 150px;
     position: relative;
 }
 
 .orb{
 	position: absolute;
     top: 0px;
-    width: 175px;
+    width: 135px;
     left: 50%;
     transform: translateX(-50%);
 }
 .msg-row{
-    background-color: white;
+    background-color: rgba(255,255,255,0.7);
     padding: 3px;
     border-radius: 10px;
     margin-top: 15px;

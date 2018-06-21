@@ -9,7 +9,7 @@ class MainPage extends React.Component{
     }
 
     componentDidMount() {
-        window.addEventListener('load', this.getItem);
+        this.getItem()
      }
 
     getItem(){
