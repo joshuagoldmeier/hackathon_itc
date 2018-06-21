@@ -26,6 +26,7 @@ body{
     left: 50%;
     position: absolute;
     background-color:rgba(255,255,255,0);
+    height: 86%;
 }
 
 .chat-window-header{
@@ -38,8 +39,8 @@ body{
 }
 
 .chat-screen{
-	width:500px;
-	height:500px;
+	width:530px;
+	height:65%;
     background-image: url('https://i.pinimg.com/736x/83/9b/95/839b958e458bf7c8623356d6d953fd08--football-cakes-football-field.jpg');
     background-size: 96%;
 	border: 1px solid rgba(56, 42, 42, 0.8);
@@ -94,7 +95,7 @@ body{
     background-color: white;
     padding: 3px;
     border-radius: 10px;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 
 #emoji{
