@@ -22,7 +22,7 @@ ChatBot.start = function () {
         ChatBot.bindErrorHandlers();
         ChatBot.initSpeechConfig();
         ChatBot.bindUserActions();
-        ChatBot.write("Hello, My name is Boto. What is yours?", "boto");
+        ChatBot.write("Hello, My name is gearRobot, i will assist you to optimize your buying experience, what is your name ?", "boto");
     });
 };
 
@@ -85,11 +85,15 @@ ChatBot.sendMessage = function () {
             ChatBot.write(chatInput.val(), "me");
             //Sending the user line to the server using the POST method
             $.post(ChatBot.SERVER_PATH + "/chat", {"msg": chatInput.val()}, function (result) {
-                if (typeof result != "undefined" && "msg" in result) {
+                if (typeof result != "undefined" && "msg" in result && result["status"]!==1) {
                     ChatBot.setAnimation(result.animation);
                     ChatBot.write(result.msg, "boto");
-                } else if (typeof result != "undefined" && "msg" in result && "status" in result)  {
-                    window.location.replace(ChatBot.SERVER_PATH+"/mainpage"); 
+                } else if (typeof result != "undefined" && "msg" in result && result["status"]==1)  {
+                    ChatBot.setAnimation(result.animation);
+                    ChatBot.write(result.msg, "boto");
+                    setTimeout(function(){
+                        window.location.replace(ChatBot.SERVER_PATH+"/mainpage"); 
+                    },3000)
                 }else{
                     ChatBot.handleServerError("No result");
                 }
