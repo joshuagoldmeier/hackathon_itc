@@ -1,15 +1,18 @@
 from bottle import route,static_file, run, template, get,request,response
 import json
 import bottle as b
+from Sports_Equipment import sports
 # from pymongo import MongoClient
 
 
 info_list=[]
 
 question_list=["ok {} , nice to meet you !Which sport would you like to take a whack at?","what is your level in this sport (beginner,amateur,professional)",
-               "What is your height?(cm please)","what is your weight(kg please)?","Are you a man or a woman?",
+               "What is your height?(cm please)","what is your weight(kg please)?","What is your age ?",
+               "Are you a man or a woman?(I know its's a lot of questions but we really want to help you!)",
                "last question,what is your budget(only numbers in dollars)"]
-error_answer ="If you want GEAROBOT to help you please give us a correct answer:)"
+
+error_answer ="If you want GEAROBOT to help you please give us a correct answer,maybe you didn't type it right :)"
 
 
 @get("/")
@@ -81,6 +84,16 @@ def chat():
         return json.dumps({"animation": "speaking", "msg": question_list[4],"status":0})
 
     if len(info_list) == 5:
+        age = request.POST.get('msg')
+        while not age.isdigit():
+            return json.dumps({"animation": "speaking", "msg": error_answer, "status": 0})
+
+        info_list.append(age)
+
+        return json.dumps({"animation": "speaking", "msg": question_list[5],"status":0})
+
+
+    if len(info_list) == 6:
         user_message = request.POST.get('msg')
         while not get_user_gender(user_message):
             return json.dumps({"animation": "speaking", "msg": error_answer, "status": 0})
@@ -88,9 +101,9 @@ def chat():
         gender = get_user_gender(user_message)
         info_list.append(gender)
 
-        return json.dumps({"animation": "speaking", "msg": question_list[5],"status":0})
+        return json.dumps({"animation": "speaking", "msg": question_list[6],"status":0})
 
-    if len(info_list) == 6:
+    if len(info_list) == 7:
         budget = request.POST.get('msg')
         while not budget.isdigit():
             return json.dumps({"animation": "speaking", "msg": error_answer, "status": 0})
@@ -160,12 +173,9 @@ def get_user_gender(user_message):
 
 @get("/sports/ski")
 def sports():
+
     return json.dumps(info_list)
 
-
-@route('/hello/<name>')
-def index(name):
-    return template('<b>Hello {{name}}</b>!', name=name)
 
 
 @get("/sport/<sport_name>")
