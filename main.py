@@ -6,7 +6,7 @@ import bottle as b
 
 info_list=[]
 
-question_list=["ok {} Which sport would you like to take a whack at?","what is your level in this sport (beginner,amateur,professional)",
+question_list=["ok {} , nice to meet you !Which sport would you like to take a whack at?","what is your level in this sport (beginner,amateur,professional)",
                "What is your height?(cm please)","what is your weight(kg please)?","Are you a man or a woman?",
                "last question,what is your budget(only numbers in dollars)"]
 error_answer ="If you want GEAROBOT to help you please give us a correct answer:)"
