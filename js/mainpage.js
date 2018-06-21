@@ -11,7 +11,6 @@ class MainPage extends React.Component{
     }
 
     componentDidMount() {
-        // window.addEventListener('load', this.getItem);
         this.getItem();
      }
 
@@ -23,17 +22,38 @@ class MainPage extends React.Component{
             
             dataType:"json",
             success: function (response){
-                console.log(response)
+                // var item =[Name,Price,URL,Description,Image,Size];
                 var counter = 0
                 var row = $("<div>")
                 row.addClass("row")
-               for (var i = 0 ; i<response.length ; i++){
+                console.log(response)
+               for (var i = 0 ; i<Object.keys(response).length ; i++){
 
                    if (counter<2){
                         counter++;
                         var product =$("<div>")
                         product.addClass("col-6 product")
-                        product.append(response[i])
+                        product.append("name: "+Object.values(response)[i].Name+"</br>")
+
+                        product.append("price: "+Object.values(response)[i].Price+"$"+"</br>")
+
+                        var link=$("<a>")
+                        link.attr("target","_new")
+                        link.attr("href",Object.values(response)[i].URL)
+                        link.append("link to the product");
+                        link.append("</br>")
+
+                        product.append(link)
+
+                        product.append("Description: "+Object.values(response)[0].Description+"</br>")
+                       
+
+                        product.append("color: "+Object.values(response)[0].Size+"</br>")
+                        var image= $("<img>");
+
+                        image.addClass("product-image")
+                        image.attr("src",Object.values(response)[i].Image+"</br>")
+                        image.appendTo(product) 
                         product.appendTo(row);   
                    }
                    else{
@@ -43,8 +63,31 @@ class MainPage extends React.Component{
                        row.addClass("row")
                        var product =$("<div>")
                        product.addClass("col-6 product")
-                       product.append(response[i])
-                       product.appendTo(row);
+                       counter++;
+                       var product =$("<div>")
+                       product.addClass("col-6 product")
+                       product.append("name: "+Object.values(response)[i].Name+"</br>")
+
+                       product.append("price: "+Object.values(response)[i].Price+"$"+"</br>")
+
+                       var link=$("<a>")
+                       link.attr("target","_new")
+                       link.attr("href",Object.values(response)[i].URL)
+                       link.append("link to the product");
+                       link.append("</br>")
+
+                       product.append(link)
+
+                       product.append("Description: "+Object.values(response)[0].Description+"</br>")
+                      
+
+                       product.append("color: "+Object.values(response)[0].Size+"</br>")
+                       var image= $("<img>");
+
+                       image.addClass("product-image")
+                       image.attr("src",Object.values(response)[i].Image+"</br>")
+                       image.appendTo(product) 
+                       product.appendTo(row); 
                        
                        counter++;
                        
@@ -61,8 +104,8 @@ class MainPage extends React.Component{
     }
     render(){
         return(
-            <div>
-                <h1>Hi <span>{this.state.name}</span> we found the best deals for you</h1>
+            <div className= "maincontainer">
+                <h1>Hi <span>{this.state.name} </span><img id="headimg" src="../images/frobot.png"/> have found the best deals for you</h1>
                 <div className="displayBy">
                     <div className="container">
                         <div className="row">
