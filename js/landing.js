@@ -5,10 +5,8 @@ class NavBar extends React.Component{
     render(){
         return (
             <nav class="navbar navbar-light">
-                <a class="navbar-brand" href="#">
-                    <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""/>
-                        GeaRoBot
-                </a>
+                <a id="brand" href="#">GeaRoBot</a>
+                <a id="contact">Contact US</a>
             </nav>
         );
     }
@@ -52,8 +50,8 @@ class App extends React.Component{
             return(
                 <div>
                     <NavBar/>
-                    <h1>Welcome to our Site</h1>
-                    <h3>Here you can choose your favorite sport and get shopping advices according to your level</h3>
+                    <h1>Welcome to GeaRoBot</h1>
+                    <h3>The Best way to optimize your gear shopping experience <br/>I want to know you a little bit better, click on the button and let's have a little chat together</h3>
                     <Menu/>
                     <Footer/>
                 </div>
