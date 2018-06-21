@@ -1,7 +1,4 @@
 sports = {
-    'ski' : {
-        'Beginner': ["Ski_Gloves", "Skis", "Ski_Boots", "Ski_Coat", "Ski_Goggles"],
-    },
 
     'baseball' : {
         'Beginner': ["Baseball_Bat", "Baseballs", "Baseball_Helmet", "Baseball_Glove"],
@@ -29,5 +26,11 @@ sports = {
 
     'volleyball' : {
         "Beginner": ["Volleyball", "Volleyball_net", "Volleyball_posts"]
+    },
+
+    'ski': {
+        'Beginner': ["Ski_Gloves", "Skis", "Ski_Boots", "Ski_Coat", "Ski_Goggles"],
+
     }
 }
+

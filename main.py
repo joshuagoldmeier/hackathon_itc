@@ -176,9 +176,12 @@ def get_user_gender(user_message):
 def sports():
     print("In the route")
     items_to_return = {}
+    equipment_keywords = ["soccer_ball", "volleyball", "football", "basketball", "hockey_puck", "baseball",]
     age = int(info_list[5])
-    height = info_list[3]
-    weight = info_list[4]
+    height = int(info_list[3])
+    weight = int(info_list[4])
+    budget = int(info_list[7])
+
     gender = "male" if info_list[6] == "man" else "female"
     male_keywords = ['boy', 'kid', 'youth'] if age < 18 else ['men', 'adult']
     female_keywords = ['girl', 'kid', 'youth'] if age < 18 else ['women', 'adult']
@@ -190,18 +193,46 @@ def sports():
             for equipment_name, equipment_list in sport["items"].items():
                 print(equipment_name)
                 for one_equip in equipment_list:
-                    if "Gender" in one_equip:
-                        if one_equip["Gender"].lower() == gender:
-                            if 'male' in gender:
-                                for kw in male_keywords:
-                                    if kw.lower() in one_equip['Name'].lower():
+                    if equipment_name not in equipment_keywords:
+                        if "Gender" in one_equip:
+                            if one_equip["Gender"].lower() == gender:
+                                if 'female' in gender:
+                                    for kw in female_keywords:
+                                        if kw.lower() in one_equip['Name'].lower():
+                                            items_to_return[equipment_name] = one_equip
+                                else:
+                                    for kw in male_keywords:
+                                        if kw.lower() in one_equip['Name'].lower():
+                                            items_to_return[equipment_name] = one_equip
+                            elif one_equip["Gender"] == "Unisex":
+                                if height > 150 and weight > 70:
+                                    if "medium" in one_equip["Size"].lower() or "medium" in one_equip["Description"].lower():
                                         items_to_return[equipment_name] = one_equip
+                                    elif "large" in one_equip["Size"].lower() or "large" in one_equip["Description"].lower():
+                                        items_to_return[equipment_name] = one_equip
+                                else:
+                                    if "medium" in one_equip["Size"].lower() or "medium" in one_equip["Description"].lower():
+                                        items_to_return[equipment_name] = one_equip
+                                    elif "small" in one_equip["Size"].lower() or "small" in one_equip["Description"].lower():
+                                        items_to_return[equipment_name] = one_equip
+                        else:
+                            if height > 150 and weight > 70:
+                                if "medium" in one_equip["Size"].lower() or "medium" in one_equip["Description"].lower():
+                                    items_to_return[equipment_name] = one_equip
+                                elif "large" in one_equip["Size"].lower() or "large" in one_equip["Description"].lower():
+                                    items_to_return[equipment_name] = one_equip
                             else:
-                                for kw in female_keywords:
-                                    if kw.lower() in one_equip['Name'].lower():
-                                        items_to_return[equipment_name] = one_equip
-                        elif one_equip["Gender"] == "Unisex":
-                            print(8)
+                                if "medium" in one_equip["Size"].lower() or "medium" in one_equip["Description"].lower():
+                                    items_to_return[equipment_name] = one_equip
+                                elif "small" in one_equip["Size"].lower() or "small" in one_equip["Description"].lower():
+                                    items_to_return[equipment_name] = one_equip
+                    else:
+                        if "size 5" in one_equip['Name'].lower() or "official size" in one_equip['Description'].lower():
+                                    items_to_return[equipment_name] = one_equip
+
+
+
+
     print (items_to_return)
     return json.dumps(items_to_return) if len(items_to_return) > 0 else "Sorry, we cannot find you a match :("
 
