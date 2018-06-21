@@ -16,7 +16,7 @@ sports = {
     },
 
     'football' : {
-        "Beginner": ["Football", "Football_helmet", "Football_shoulder_pads",  ]
+        "Beginner": ["Football", "Football_helmet", "Football_shoulder_pads", ]
     },
 
     'soccer' : {
@@ -24,10 +24,10 @@ sports = {
     },
 
     'fencing' : {
-    "Beginner": ["Fencing_sword", "Fencing_jacket", "Fencing_pants", "Fencing_chest_guard", "Fencing_mask", "Fencing_Lame"]
+        "Beginner": ["Fencing_sword", "Fencing_jacket", "Fencing_pants", "Fencing_chest_guard", "Fencing_mask", "Fencing_Lame"]
     },
 
     'volleyball' : {
-"Beginner": ["Fencing_sword", "Fencing_jacket", "Fencing_pants", "Fencing_chest_guard", "Fencing_mask", "Fencing_Lame"]
+        "Beginner": ["Volleyball", "Volleyball_net", "Volleyball_posts"]
     }
 }

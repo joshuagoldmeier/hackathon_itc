@@ -2,8 +2,6 @@ from bottle import route,static_file, run, template, get,request
 import json
 import bottle as b
 
-
-
 info_list=[]
 question_list=["Which sport would you like to take a wack at?","what is your level in this sport",
                "What is your height?(cm please)","what is your weight(kg please)?",
@@ -68,8 +66,28 @@ def chat():
 
 @get("/sports/ski")
 def sports():
-    return json.dumps(info_list)
+    items_to_return = {}
+    age = info_list[5]
+    height = info_list[3]
+    weight = info_list[4]
+    gender = info_list[6]
+    keywords = ['boy', 'girl', 'kid', 'youth'] if age < 18 else ['men', 'women', 'adult']
+    client = MongoClient('localhost', 27017)
+    db = client.hackathon
+    items = db.items.find()
+    print(items)
+    for item in items:
+        if item["_id"].lower() == info_list[1].lower():
+            for equipment_name, equipment_list in item.items():
+                for one_equip in equipment_list:
+                    if "Gender" in one_equip:
+                        if one_equip["Gender"] == "Unisex" or one_equip["Gender"] == gender:
+                            for kw in keywords:
+                                if kw in one_equip['Name'].lower():
+                                    items_to_return[equipment_name] = one_equip
 
+
+    return json.dumps(items_to_return) if len(items_to_return) > 0 else "Sorry, we cannot find you a match :("
 
 @route('/hello/<name>')
 def index(name):
