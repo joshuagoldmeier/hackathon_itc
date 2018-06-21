@@ -2,7 +2,7 @@ from bottle import route,static_file, run, template, get,request,response
 import json
 import bottle as b
 from Sports_Equipment import sports
-from pymongo import MongoClient
+#from pymongo import MongoClient
 
 
 info_list=[]
