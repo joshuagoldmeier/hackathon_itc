@@ -1,20 +1,38 @@
 body {
-    background-image:url('http://asiaone.co.in/wp-content/uploads/2016/11/national-sports-day.jpg');
+    background-image:url('https://images.pexels.com/photos/332835/pexels-photo-332835.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 #root {
     text-align: center;
 }
 .navbar {
-    background-color: lightblue;
+    background-color: rgba(64, 71, 74, 0.9);
     height: 100px;
-    margin-bottom: 50px;
+    margin-bottom: 50px
 }
-.navbar-brand {
+#brand {
     font-size: 3.25rem;
+    color: #e8dcd8 !important;
+    text-decoration: none;
+}
+h1 {
+    font-size: 35px;
+    font-weight: bold;
 }
 
+h3 {
+    font-size: 28px;
+}
 #btn-menu{
     background-color: white;
+    width: 250px;
+    height: 75px;
+    margin-top: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+
 }
 
 .container{
@@ -28,4 +46,12 @@ body {
     height: 20px;
     font-size: 50px;
     margin-right: 40px;
+    color: white;
+}
+
+#contact{
+    color: white;
+    font-size: 40px;
+    border: white solid 3px;
+    cursor: pointer;
 }
