@@ -3,27 +3,31 @@ class MainPage extends React.Component{
     constructor(props){
         super(props); 
         this.getItem =this.getItem.bind(this)
+        var cookieSplitted = document.cookie.split(";");
         this.state={
-            name: document.cookie.substring(5)
+            name: cookieSplitted[1].substring(6),
+            sport : cookieSplitted[0].substring(7)
         }
     }
 
     componentDidMount() {
-        this.getItem()
+        this.getItem();
      }
 
     getItem(){
-        console.log(document.cookie.substring(5))
+       
         $.ajax({
             type:"GET",
             url:"/sports/ski",
             
             dataType:"json",
             success: function (response){
+                console.log(response)
                 var counter = 0
                 var row = $("<div>")
                 row.addClass("row")
                for (var i = 0 ; i<response.length ; i++){
+
                    if (counter<2){
                         counter++;
                         var product =$("<div>")
@@ -57,7 +61,7 @@ class MainPage extends React.Component{
     render(){
         return(
             <div>
-                <h1>Hi <span>{this.state.name}</span> We found the best deals for you</h1>
+                <h1>Hi <span>{this.state.name}</span> we found the best deals for you</h1>
                 <div className="displayBy">
                     <div className="container">
                         <div className="row">

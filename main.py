@@ -2,7 +2,7 @@ from bottle import route,static_file, run, template, get,request,response
 import json
 import bottle as b
 from Sports_Equipment import sports
-# from pymongo import MongoClient
+from pymongo import MongoClient
 
 
 info_list=[]
@@ -51,6 +51,7 @@ def chat():
                 {"animation]": "speaking", "msg":error_answer,"status" : 0})
 
         sport = get_user_sport(user_message)
+        response.set_cookie('sport', sport)
         info_list.append(sport)
         return json.dumps({"animation": "speaking", "msg": question_list[1],"status":0})
 
@@ -173,21 +174,48 @@ def get_user_gender(user_message):
 
 @get("/sports/ski")
 def sports():
-
-    return json.dumps(info_list)
-
-
-
-@get("/sport/<sport_name>")
-def index(sport_name):
+    print("In the route")
+    items_to_return = {}
+    age = int(info_list[5])
+    height = info_list[3]
+    weight = info_list[4]
+    gender = "male" if info_list[6] == "man" else "female"
+    male_keywords = ['boy', 'kid', 'youth'] if age < 18 else ['men', 'adult']
+    female_keywords = ['girl', 'kid', 'youth'] if age < 18 else ['women', 'adult']
     client = MongoClient('localhost', 27017)
     db = client.hackathon
-    items = db.items.find()
-    print(items)
-    for item in items:
-        if item["_id"] == sport_name:
-            return item
-    return "can't find sport!"
+    all_sports = db.items.find()
+    for sport in all_sports:
+        if sport["_id"].lower() == info_list[1].lower():
+            for equipment_name, equipment_list in sport["items"].items():
+                print(equipment_name)
+                for one_equip in equipment_list:
+                    if "Gender" in one_equip:
+                        if one_equip["Gender"].lower() == gender:
+                            if 'male' in gender:
+                                for kw in male_keywords:
+                                    if kw.lower() in one_equip['Name'].lower():
+                                        items_to_return[equipment_name] = one_equip
+                            else:
+                                for kw in female_keywords:
+                                    if kw.lower() in one_equip['Name'].lower():
+                                        items_to_return[equipment_name] = one_equip
+                        elif one_equip["Gender"] == "Unisex":
+                            print(8)
+    print (items_to_return)
+    return json.dumps(items_to_return) if len(items_to_return) > 0 else "Sorry, we cannot find you a match :("
+
+
+# @get("/sport/<sport_name>")
+# def index(sport_name):
+#     client = MongoClient('localhost', 27017)
+#     db = client.hackathon
+#     items = db.items.find()
+#     print(items)
+#     for item in items:
+#         if item["_id"] == sport_name:
+#             return item
+#     return "can't find sport!"
 
 @get('/js/<filename:re:.*\.js>')
 def javascripts(filename):
