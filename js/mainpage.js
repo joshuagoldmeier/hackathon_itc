@@ -23,32 +23,58 @@ class MainPage extends React.Component{
             
             dataType:"json",
             success: function (response){
-                console.log(response)
+                // var item =[Name,Price,URL,Description,Image,Size];
                 var counter = 0
                 var row = $("<div>")
                 row.addClass("row")
-               for (var i = 0 ; i<response.length ; i++){
+                console.log(Object.keys(response).length)
+               for (var i = 0 ; i<Object.keys(response).length ; i++){
 
                    if (counter<2){
                         counter++;
                         var product =$("<div>")
                         product.addClass("col-6 product")
-                        product.append(response[i])
+                        product.append("name: "+Object.values(response)[i].Name+"</br>")
+
+                        product.append("price: "+Object.values(response)[i].Price+"</br")
+            
+                        product.append("url: "+Object.values(response)[i].URL+"</br>")
+
+                        // product.append("Description: "+Object.values(response)[0].Description)
+                        var image= $("<img>");
+
+                        image.addClass("product-image")
+                        image.attr("src",Object.values(response)[i].Image)
+                        image.appendTo(product) 
+                        // product.text("size: "+Object.values(response)[0].Size)
+
                         product.appendTo(row);   
                    }
-                   else{
-                        row.appendTo($(".items"));
-                       counter = 0;
-                       var row = $("<div>")
-                       row.addClass("row")
-                       var product =$("<div>")
-                       product.addClass("col-6 product")
-                       product.append(response[i])
-                       product.appendTo(row);
+                //    else{
+                //         row.appendTo($(".items"));
+                //        counter = 0;
+                //        var row = $("<div>")
+                //        row.addClass("row")
+                //        var product =$("<div>")
+                //        product.addClass("col-6 product")
+                //        product.text("name: ")
+                //        product.append(response[Object.keys(response)[i].Name]);
+                //        product.text("name: ")
+                //        product.append(response[Object.keys(response)[i].Price]);
+                //        product.text("name: ")
+                //        product.append(response[Object.keys(response)[i].URL]);
+                //        product.text("name: ")
+                //        product.append(response[Object.keys(response)[i].Description]);
+                //        var image= $("<img>");
+                //        image.addClass("product-image")
+                //        image.attr("src",Object.values(response)[0].Image)
+                //        image.appendTo(row); 
+                //        product.append(response[Object.keys(response)[i].Size])
+                //        product.appendTo(row);
                        
-                       counter++;
+                //        counter++;
                        
-                   }
+                //    }
                }
                row.appendTo($(".items")); 
             },

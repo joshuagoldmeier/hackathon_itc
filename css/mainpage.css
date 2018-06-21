@@ -1,13 +1,14 @@
-img{
-    width: 150px;
-    height: 150px;
-}
 
 .product{
-    height:150px;
+    height:100%;
     border: solid 1px black
 }   
 
 .container{
     transform: translateY(100%);
+}
+
+.product-image{
+    width: 30%;
+    height: 30%;
 }

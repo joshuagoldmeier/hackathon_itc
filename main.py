@@ -133,7 +133,8 @@ def get_user_sport(user_message):
 
     user_message = user_message.lower()
     user_message_splited = user_message.split()
-    sport_list = ["ski","soccer","basketball","danse"]
+
+    sport_list = ["ski","baseball","hockey","basketball","football","soccer","fencing","volleyball"]
     punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
     for word in user_message_splited:
         if word not in sport_list or word.isdigit() or word in punctuations:
