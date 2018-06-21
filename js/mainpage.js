@@ -104,8 +104,8 @@ class MainPage extends React.Component{
     }
     render(){
         return(
-            <div>
-                <h1>Hi <span>{this.state.name}</span> we found the best deals for you</h1>
+            <div className= "maincontainer">
+                <h1>Hi <span>{this.state.name} </span><img id="headimg" src="../images/frobot.png"/> have found the best deals for you</h1>
                 <div className="displayBy">
                     <div className="container">
                         <div className="row">
